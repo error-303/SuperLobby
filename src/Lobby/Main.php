@@ -1,0 +1,178 @@
+<?php 
+
+namespace overa;
+
+use pocketmine\Player;
+use pocketmine\Server;
+
+use pocketmine\scheduler\Task;
+
+
+use pocketmine\plugin\PluginBase;
+
+use pocketmine\command\Command;
+use pocketmine\command\CommandSender;
+
+use jojoe77777\FormAPI;
+
+use pocketmine\item\Item;
+
+use pocketmine\event\player\PlayerDropItemEvent;
+use pocketmine\event\player\PlayerExhaustEvent;
+use pocketmine\event\player\PlayerQuitEvent;
+
+use pocketmine\level\sound\AnvilFallSound;
+use pocketmine\level\sound\ClickSound;
+use pocketmine\level\sound\AnvilUseSound;
+
+use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
+use pocketmine\network\mcpe\protocol\LevelSoundEventPacketV2;
+
+use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\Listener;
+
+use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityDeathEvent;
+
+class Main extends PluginBase implements Listener{
+
+
+public function onEnable(){
+	$this->getLogger()->info("Lobby Plugin has been actived");
+	
+	$this->getServer()->getPluginManager()->registerEvents($this , $this);
+}
+
+
+	
+public function onDrop(PlayerDropItemEvent $event)
+{
+     $event->setCancelled(true);
+     $event->getPlayer()->sendMessage("§cVous ne pouvez pas drop d'item");
+}
+
+public function onJoinPlayer(PlayerJoinEvent $event){
+
+   $player = $event->getPlayer();	
+   $name = $event->getPlayer()->getName();
+   $player->getInventory()->clearAll();
+   $player->getArmorInventory()->clearAll();
+
+   $event->setJoinMessage("");
+	
+	$player->sendMessage("§7====================");
+	$player->sendMessage("§a   §l  Test");
+	$player->sendMessage("§f Code by 0v3r");
+	$player->sendMessage("§7====================");
+	
+	$player->addTitle("§aBienvenu(e) sur");
+	$player->addSubTitle("§c Test");
+	$player->addActionBar("§7[§a+§7] §a$name");
+	
+
+   $player->getInventory()->setItem(0, Item::get(369)->setCustomName("§r§aProfile"));
+   $player->getInventory()->setItem(2, Item::get(341)->setCustomName("§r§eLobby"));
+   $player->getInventory()->setItem(4, Item::get(345)->setCustomName("§r§6Compas"));
+   $player->getInventory()->setItem(8, Item::get(130)->setCustomName("§r§5Cosmetics"));
+   $player->getInventory()->setItem(6, Item::get(399)->setCustomName("§r§aInfo"));
+	
+   $player->setXpLevel("2020");
+   $player->setFood("20");
+   $player->setMaxHealth("20");
+   $player->setHealth("20");
+   $player->setGamemode(2);
+   $player->getlevel()->addSound(new AnvilUseSound($player));
+
+}
+	
+public function onQuitPlayer(PlayerQuitEvent $event){
+	$player = $event->getPlayer();
+	$name = $event->getPlayer()->getName();
+	$event->addActionBar("§7[§c-§7] §c$name");
+     
+
+
+}
+	
+public function Hunger(PlayerExhaustEvent $event){
+
+        $event->setCancelled(true);
+    }
+	
+	
+public function onFallDamage(EntityDamageEvent $event){
+
+        $event->setCancelled(true);
+
+    }
+
+    public function onPlayerDamage(EntityDamageEvent $event){
+
+        $event->setCancelled(true);
+    }
+
+
+public function onInteract(PlayerInteractEvent $ev){
+
+	
+        $player = $ev->getPlayer();
+        $item = $ev->getItem();
+	
+	        if($item->getCustomName() == "§r§5Cosmetics"){
+                $this->Future($player);
+
+
+}
+	
+	
+
+
+    public function Future($player){
+
+        $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+        $form = $api->createSimpleForm(function (Player $player, int $data = null) {
+            $result = $data;
+            if ($result === null) {
+                return true;
+            }
+            switch ($result) {
+                case 0:
+                    if ($player->hasPermission("fly.use")){
+                        $this->Fly($player);
+                    }else{
+                        $player->sendMessage("§cFLY");
+                    }
+                    break;
+            }
+            switch ($result){
+                case 1:
+                    if ($player->hasPermission("size.use")) {
+                        $this->Size($player);
+                    }else{
+                        $player->sendMessage("§c SIZE");
+                    }
+                    break;
+            }
+            switch ($result){
+                case 2:
+                    if ($player->hasPermission("speed.use")){
+                        $this->Speed($player);
+                    }else{
+                        $player->sendMessage("§c SPEED");
+                    }
+                    break;
+            }
+        });
+        $form->setTitle("§r§5Cosmetics");
+        $form->addButton("§l§6Fly");
+        $form->addButton("§l§2Size");
+        $form->addButton("§l§dSpeed");
+        $form->addButton("§cNoctalia");
+        $form->sendToPlayer($player);
+        return true;
+
+    }
+	
+}
