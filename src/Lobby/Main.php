@@ -151,15 +151,15 @@ public function onInteract(PlayerInteractEvent $ev){
             switch ($result) {
 		    
 		    case 0:
-                        $player->sendMessage("§cFLY");
+                        $this->Fly($player);
                     break;
            
 		    case 1:
-                        $player->sendMessage("§c SIZE");
+                        $player->sendMessage("§cSIZE");
                     break;	    
                 
 		    case 2:
-                        $player->sendMessage("§c SPEED");
+                        $player->sendMessage("§cSPEED");
                     break;
             }
         });
@@ -167,10 +167,81 @@ public function onInteract(PlayerInteractEvent $ev){
         $form->addButton("§l§6Fly");
         $form->addButton("§l§2Size");
         $form->addButton("§l§dSpeed");
-	$form->addButton("§4EXIT");
+	$form->addButton("§4§lEXIT");
         $form->sendToPlayer($player);
 	    return $form;
 
     }
+	
+public function Fly($player){
+
+        $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+	$form = $api->createSimpleForm(function (Player $player, int $data = null) {
+            $result = $data; 
+            if ($result === null) {
+                return true;
+            }
+            switch ($result) {
+		    
+		    case 0:
+                        $player->setAllowFlight(true);
+                    break;
+		       
+		    case 1:
+                        $player->setAllowFlight(false);
+			$player->setFlying(false);
+                    break;	    
+                
+            }
+        });
+        $form->setTitle("§r§5Cosmetics Fly");
+        $form->addButton("§l§aFly ON");
+        $form->addButton("§l§cFLY OFF");
+	$form->addButton("§4§lEXIT");
+        $form->sendToPlayer($player);
+	    return $form;
+
+    }
+	
+	
+public function Size($player){
+
+        $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+	$form = $api->createSimpleForm(function (Player $player, int $data = null) {
+            $result = $data; 
+            if ($result === null) {
+                return true;
+            }
+            switch ($result) {
+		    
+		    case 0:
+                        $player->setScale(2.0);
+			$player->sendMessage("§7Vous etes maintenant de §6§lGrande §r§7 Taille");
+                    break;
+		       
+		    case 1:
+                        $player->setScale(1.0);
+			$player->sendMessage("§7Vous etes maintenant de §6§lMoyenne §r§7Taille");
+                    break;
+			    
+		    case 2:
+			$player->setScale(0.5);
+			$player->sendMessage("§7Vous etes maintenant de §l§6Petite §r§7Taille");
+	            break;
+                
+            }
+        });
+        $form->setTitle("§r§5Cosmetics Size");
+        $form->addButton("§l§c Grande Taille");
+        $form->addButton("§l§6Moyenne Taille");
+	$form->addButton("§a§lPetite Taille");
+	$form->addButton("§4§lEXIT");
+        $form->sendToPlayer($player);
+	    return $form;
+
+
+}
+
+	
 	
 }
