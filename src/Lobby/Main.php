@@ -18,6 +18,7 @@ use pocketmine\command\CommandSender;
 
 use jojoe77777\FormAPI;
 use jojoe77777\FormAPI\CustomForm;
+use jojoe77777\FormAPI\SimpleForm;
 
 use pocketmine\item\Item;
 
