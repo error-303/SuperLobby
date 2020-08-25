@@ -129,7 +129,7 @@ public function onInteract(PlayerInteractEvent $ev){
         $player = $ev->getPlayer();
         $item = $ev->getItem();
 	
-	if ($player->getInventory()->getItemInHand()->getId() === 345){
+	if ($player->getInventory()->getItemInHand()->getId() === 130){
 		
 		$this->form($player);
 	
