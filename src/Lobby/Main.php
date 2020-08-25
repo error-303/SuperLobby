@@ -47,7 +47,7 @@ public function onEnable(){
 	$this->getLogger()->info("Lobby Plugin has been actived");
 	
 	$this->getServer()->getPluginManager()->registerEvents($this , $this);
-	$this->getScheduler()->scheduleRepeatingTask(new CountTask($this), 20)
+	$this->getScheduler()->scheduleRepeatingTask(new CountTask($this), 20);
 }
 
 
