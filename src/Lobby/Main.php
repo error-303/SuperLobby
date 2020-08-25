@@ -151,7 +151,6 @@ public function onInteract(PlayerInteractEvent $ev){
             switch ($result){
                 case 2:
                         $player->sendMessage("§c SPEED");
-                    }
                     break;
             }
         });
