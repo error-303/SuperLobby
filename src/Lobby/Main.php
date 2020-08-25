@@ -71,7 +71,7 @@ public function onJoinPlayer(PlayerJoinEvent $event){
    $player->getInventory()->clearAll();
    $player->getArmorInventory()->clearAll();
 
-   $event->setJoinMessage("");
+   $event->setJoinMessage("§7[§a+§7]§a$name");
 	
 	$player->sendMessage("§7====================");
 	$player->sendMessage("§a  §l Noctalia");
@@ -84,7 +84,7 @@ public function onJoinPlayer(PlayerJoinEvent $event){
 
    $player->getInventory()->setItem(0, Item::get(369)->setCustomName("§r§aProfile"));
    $player->getInventory()->setItem(2, Item::get(341)->setCustomName("§r§eLobby"));
-   $player->getInventory()->setItem(4, Item::get(345)->setCustomName("§r§6Compas"));
+   $player->getInventory()->setItem(4, Item::get(345)->setCustomName("§r§6Compass"));
    $player->getInventory()->setItem(8, Item::get(130)->setCustomName("§r§5Cosmetics"));
    $player->getInventory()->setItem(6, Item::get(399)->setCustomName("§r§aInfo"));
 	
@@ -100,7 +100,7 @@ public function onJoinPlayer(PlayerJoinEvent $event){
 public function onQuitPlayer(PlayerQuitEvent $event){
 	$player = $event->getPlayer();
 	$name = $event->getPlayer()->getName();
-     
+        $event->setQuitMessage("§7[§c-§7]§c$name");
 
 
 }
