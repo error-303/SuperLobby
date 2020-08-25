@@ -140,27 +140,17 @@ public function onInteract(PlayerInteractEvent $ev){
             }
             switch ($result) {
                 case 0:
-                    if ($player->hasPermission("fly.use")){
-                        $this->Fly($player);
-                    }else{
                         $player->sendMessage("§cFLY");
-                    }
                     break;
             }
             switch ($result){
-                case 1:
-                    if ($player->hasPermission("size.use")) {
-                        $this->Size($player);
-                    }else{
+		    case 1:
                         $player->sendMessage("§c SIZE");
                     }
                     break;
             }
             switch ($result){
                 case 2:
-                    if ($player->hasPermission("speed.use")){
-                        $this->Speed($player);
-                    }else{
                         $player->sendMessage("§c SPEED");
                     }
                     break;
@@ -172,7 +162,6 @@ public function onInteract(PlayerInteractEvent $ev){
         $form->addButton("§l§dSpeed");
         $form->addButton("§cNoctalia");
         $form->sendToPlayer($player);
-        return true;
 
     }
 	
