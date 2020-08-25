@@ -20,10 +20,14 @@ use pocketmine\item\Item;
 use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerQuitEvent;
+use pocketmine\event\inventory\InventoryTransactionEvent;
 
 use pocketmine\level\sound\AnvilFallSound;
 use pocketmine\level\sound\ClickSound;
 use pocketmine\level\sound\AnvilUseSound;
+
+use pocketmine\plugin\MethodEventExecutor;
+use pocketmine\plugin\EventExecutor;
 
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacketV2;
