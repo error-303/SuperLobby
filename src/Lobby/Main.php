@@ -158,7 +158,7 @@ public function onInteract(PlayerInteractEvent $ev){
         $form->addButton("§l§6Fly");
         $form->addButton("§l§2Size");
         $form->addButton("§l§dSpeed");
-	$form->adsButton("§4EXIT")
+	$form->adsButton("§4EXIT");
         $form->sendToPlayer($player);
 	    return $form;
 
