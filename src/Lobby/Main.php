@@ -123,7 +123,7 @@ public function onInteract(PlayerInteractEvent $ev){
         $item = $ev->getItem();
 	
 	        if($item->getCustomName() == "§r§5Cosmetics"){
-                $this->Future($player);
+                $this->form($player);
 		}
 
 }
@@ -131,7 +131,7 @@ public function onInteract(PlayerInteractEvent $ev){
 	
 
 
-    public function Future($player){
+    public function form($player){
 
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createSimpleForm(function (Player $player, int $data = null) {
@@ -140,17 +140,16 @@ public function onInteract(PlayerInteractEvent $ev){
                 return true;
             }
             switch ($result) {
-                case 0:
+		    
+		    case 0:
                         $player->sendMessage("§cFLY");
                     break;
-            }
-            switch ($result){
+           
 		    case 1:
                         $player->sendMessage("§c SIZE");
-                    break;
-            }
-            switch ($result){
-                case 2:
+                    break;	    
+                
+		    case 2:
                         $player->sendMessage("§c SPEED");
                     break;
             }
