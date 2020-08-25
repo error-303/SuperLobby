@@ -90,7 +90,7 @@ public function onJoinPlayer(PlayerJoinEvent $event){
 public function onQuitPlayer(PlayerQuitEvent $event){
 	$player = $event->getPlayer();
 	$name = $event->getPlayer()->getName();
-	$event->addActionBar("§7[§c-§7] §c$name");
+	$event->addPoPup("§7[§c-§7] §c$name");
      
 
 
