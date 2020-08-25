@@ -138,8 +138,8 @@ public function onInteract(PlayerInteractEvent $ev){
     public function form($player){
 
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-	$form = $api->createSimpleForm(function (Player $player, array $data) {
-            $result = $data[0];
+	$form = $api->createSimpleForm(function (Player $player, int $data, null) {
+            $result = $data;
             if ($result === null) {
                 return true;
             }
