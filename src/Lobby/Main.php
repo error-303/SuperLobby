@@ -130,6 +130,9 @@ public function onInteract(PlayerInteractEvent $ev){
     public function Future($player){
 
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+	if($api === nul || $api->isDisabled()){
+		return;
+	}
         $form = $api->createSimpleForm(function (Player $player, int $data = null) {
             $result = $data;
             if ($result === null) {
