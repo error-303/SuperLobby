@@ -146,7 +146,6 @@ public function onInteract(PlayerInteractEvent $ev){
             switch ($result){
 		    case 1:
                         $player->sendMessage("§c SIZE");
-                    }
                     break;
             }
             switch ($result){
