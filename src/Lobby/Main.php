@@ -155,7 +155,7 @@ public function onInteract(PlayerInteractEvent $ev){
                     break;
            
 		    case 1:
-                        $player->sendMessage("§cSIZE");
+                        $this->Size($player);
                     break;	    
                 
 		    case 2:
