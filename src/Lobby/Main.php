@@ -126,9 +126,11 @@ public function onInteract(PlayerInteractEvent $ev){
         $player = $ev->getPlayer();
         $item = $ev->getItem();
 	
-	        if($item->getCustomName() == "§r§5Cosmetics"){
-                $this->form($player);
-		}
+	if ($player->getInventory()->getItemInHand()->getId() === 345){
+		
+		$this->form($player);
+	
+	}
 
 }
 	
@@ -138,7 +140,7 @@ public function onInteract(PlayerInteractEvent $ev){
     public function form($player){
 
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-	$form = $api->createSimpleForm(function (Player $player, int $data, null) {
+	$form = $api->createSimpleForm(function (Player $player, int $data = null) {
             $result = $data;
             if ($result === null) {
                 return true;
