@@ -133,8 +133,8 @@ public function onInteract(PlayerInteractEvent $ev){
 	if($api === nul || $api->isDisabled()){
 		return;
 	}
-        $form = $api->createSimpleForm(function (Player $player, int $data = null) {
-            $result = $data;
+        $form = $api->createSimpleForm(function (Player $player, array $data) {
+            $result = $data[0];
             if ($result === null) {
                 return true;
             }
