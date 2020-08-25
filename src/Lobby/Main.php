@@ -69,7 +69,6 @@ public function onJoinPlayer(PlayerJoinEvent $event){
 	
 	$player->addTitle("§aBienvenu(e) sur");
 	$player->addSubTitle("§c Test");
-	$player->addActionBar("§7[§a+§7] §a$name");
 	
 
    $player->getInventory()->setItem(0, Item::get(369)->setCustomName("§r§aProfile"));
@@ -90,7 +89,6 @@ public function onJoinPlayer(PlayerJoinEvent $event){
 public function onQuitPlayer(PlayerQuitEvent $event){
 	$player = $event->getPlayer();
 	$name = $event->getPlayer()->getName();
-	$event->addPoPup("§7[§c-§7] §c$name");
      
 
 
