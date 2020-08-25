@@ -122,7 +122,7 @@ public function onInteract(PlayerInteractEvent $ev){
 	
 	        if($item->getCustomName() == "§r§5Cosmetics"){
                 $this->Future($player);
-
+		}
 
 }
 	
