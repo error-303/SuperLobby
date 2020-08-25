@@ -134,11 +134,8 @@ public function onInteract(PlayerInteractEvent $ev){
     public function Future($player){
 
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-	if($api === nul || $api->isDisabled()){
-		return;
-	}
-        $form = $api->createSimpleForm(function (Player $player, array $data) {
-            $result = $data[0];
+        $form = $api->createSimpleForm(function (Player $player, int $data = null) {
+            $result = $data;
             if ($result === null) {
                 return true;
             }
@@ -162,8 +159,8 @@ public function onInteract(PlayerInteractEvent $ev){
         $form->addButton("§l§6Fly");
         $form->addButton("§l§2Size");
         $form->addButton("§l§dSpeed");
-        $form->addButton("§cNoctalia");
         $form->sendToPlayer($player);
+	    return $form;
 
     }
 	
